@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
         - name: blog
-          image: registry.khuedoan.com/blog:latest
+          image: registry.vpn.dev-iot.eu/blog:latest
           imagePullPolicy: Always
