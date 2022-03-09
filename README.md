@@ -1,3 +1,5 @@
+<div align="center">
+
 # Khue's Homelab
 
 <!-- ANCHOR: introduction -->
@@ -8,8 +10,6 @@
 [![license](https://img.shields.io/github/license/khuedoan/homelab?style=flat-square&logo=gnu&logoColor=white)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![stars](https://img.shields.io/github/stars/khuedoan/homelab?logo=github&logoColor=white&color=gold&style=flat-square)](https://github.com/khuedoan/homelab)
 
-Current status: **ALPHA**
-
 This project utilizes [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) and [GitOps](https://www.weave.works/technologies/gitops) to automate provisioning, operating, and updating self-hosted services in my homelab.
 It can be used as a highly customizable framework to build your own homelab.
 
@@ -19,6 +19,10 @@ It can be used as a highly customizable framework to build your own homelab.
 <!-- Please note that the chat server is self-hosted on my homelab and still at the experimental stage. -->
 
 <!-- ANCHOR_END: introduction -->
+
+Current status: **ALPHA**
+
+</div>
 
 ## Overview
 
@@ -57,8 +61,12 @@ Project status: **Alpha** (see [roadmap](#roadmap) below)
 - [ ] Automated offsite backups 🚧
 - [ ] Single sign-on 🚧
 
-Screenshots of some user-facing applications are shown here, I will update them before each release.
+Some demo videos and screenshots are shown here.
 They can't capture all of the project's features, but they are sufficient to get a concept of it.
+
+| [![PXE boot](https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png)](https://www.youtube.com/watch?v=y-d7btNNAT8) |
+| :--:                                                                                                                                                              |
+| PXE boot                                                                                                                                                          |
 
 | ![](https://user-images.githubusercontent.com/27996771/149445807-0f869eb7-d8f5-4fef-ab97-ac281df91a06.png) |
 | :--:                                                                                                       |

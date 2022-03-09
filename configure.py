@@ -11,7 +11,7 @@ import fileinput
 import os
 import subprocess
 
-default_editor = os.getenv('EDITOR')
+default_editor = os.getenv('EDITOR') or "vim"
 default_seed_repo = "https://github.com/khuedoan/homelab"
 default_domain = "khuedoan.com"
 default_timezone = "Asia/Ho_Chi_Minh"
@@ -47,7 +47,7 @@ def main() -> None:
             "bootstrap",
             "platform",
             "system",
-            "external",
+            "external"
         ]
     )
 
@@ -65,6 +65,7 @@ def main() -> None:
         replacement=timezone,
         paths=[
             "apps",
+            "system",
             "metal"
         ]
     )
