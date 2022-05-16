@@ -13,11 +13,6 @@
 This project utilizes [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) and [GitOps](https://www.weave.works/technologies/gitops) to automate provisioning, operating, and updating self-hosted services in my homelab.
 It can be used as a highly customizable framework to build your own homelab.
 
-<!-- TODO -->
-<!-- Feel free to join me on my Matrix chat server at [chat.khuedoan.com](https://chat.khuedoan.com/#/room/#homelab/general:matrix.khuedoan.com), -->
-<!-- or [`#homelab:matrix.khuedoan.com`](https://matrix.to/#/#homelab:matrix.khuedoan.com) if you already have a Matrix client. -->
-<!-- Please note that the chat server is self-hosted on my homelab and still at the experimental stage. -->
-
 <!-- ANCHOR_END: introduction -->
 
 Current status: **ALPHA**
@@ -49,6 +44,8 @@ Project status: **Alpha** (see [roadmap](#roadmap) below)
 - [x] Automated bare metal provisioning with PXE boot
 - [x] Automated Kubernetes installation and management
 - [x] Installing and managing applications using GitOps
+- [x] Automatic rolling upgrade for OS and Kubernetes
+- [x] Automatically update apps (with approval)
 - [x] Modular architecture, easy to add or remove features/components
 - [x] Automated certificate management
 - [x] Automatically update DNS records for exposed services
@@ -63,6 +60,10 @@ Project status: **Alpha** (see [roadmap](#roadmap) below)
 
 Some demo videos and screenshots are shown here.
 They can't capture all of the project's features, but they are sufficient to get a concept of it.
+
+| [![Deployment](https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.svg)](https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7) |
+| :--:                                                                                                                      |
+| Deploy with a single command (after updating the config files of course)                                                  |
 
 | [![PXE boot](https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png)](https://www.youtube.com/watch?v=y-d7btNNAT8) |
 | :--:                                                                                                                                                              |
@@ -129,9 +130,14 @@ They can't capture all of the project's features, but they are sufficient to get
     <td>DNS and Tunnel</td>
   </tr>
   <tr>
-    <td><img width="32" src="https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png"></td>
+    <td><img width="32" src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"></td>
     <td><a href="https://www.docker.com">Docker</a></td>
     <td>Ephermeral PXE server and convenient tools container</td>
+  </tr>
+  <tr>
+    <td><img width="32" src="https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png"></td>
+    <td><a href="https://github.com/kubernetes-sigs/external-dns">ExternalDNS</a></td>
+    <td>Synchronizes exposed Kubernetes Services and Ingresses with DNS providers</td>
   </tr>
   <tr>
     <td><img width="32" src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Gitea_Logo.svg"></td>
@@ -184,6 +190,11 @@ They can't capture all of the project's features, but they are sufficient to get
     <td>Systems monitoring and alerting toolkit</td>
   </tr>
   <tr>
+    <td><img width="32" src="https://docs.renovatebot.com/assets/images/logo.png"></td>
+    <td><a href="https://www.whitesourcesoftware.com/free-developer-tools/renovate">Renovate</a></td>
+    <td>Automatically update dependencies</td>
+  </tr>
+  <tr>
     <td><img width="32" src="https://avatars.githubusercontent.com/u/75713131?s=200&v=4"></td>
     <td><a href="https://rockylinux.org">Rocky Linux</a></td>
     <td>Base OS for Kubernetes nodes</td>
@@ -207,7 +218,7 @@ They can't capture all of the project's features, but they are sufficient to get
 
 ## Get Started
 
-- [Try it out on a VM](https://homelab.khuedoan.com/try-on-a-vm.html) without any hardware
+- [Try it out locally](https://homelab.khuedoan.com/try-locally.html) without any hardware
 - [Deploy on real hardware](https://homelab.khuedoan.com/deployment) for real workload
 
 ## Roadmap
@@ -245,6 +256,7 @@ If not, see <https://www.gnu.org/licenses>.
 - [Official k3s systemd service file](https://github.com/k3s-io/k3s/blob/master/k3s.service)
 - [Official Cloudflare Tunnel examples](https://github.com/cloudflare/argo-tunnel-examples)
 - [Initialize GitOps repository on Gitea and integrate with Tekton by RedHat](https://github.com/redhat-scholars/tekton-tutorial/tree/master/triggers)
+- [SSO configuration from xUnholy/k8s-gitops](https://github.com/xUnholy/k8s-gitops)
 
 ## Stargazers over time
 

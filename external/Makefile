@@ -1,8 +1,4 @@
 .POSIX:
-.EXPORT_ALL_VARIABLES:
-
-KUBECONFIG = ../metal/kubeconfig.yaml
-KUBE_CONFIG_PATH = $(KUBECONFIG)
 
 default: apply
 
@@ -23,4 +19,4 @@ plan: .terraform.lock.hcl
 	terraform plan
 
 apply: .terraform.lock.hcl namespaces
-	terraform apply
+	terraform apply -auto-approve

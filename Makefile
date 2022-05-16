@@ -1,26 +1,33 @@
 .POSIX:
+.PHONY: *
+.EXPORT_ALL_VARIABLES:
 
-default: metal bootstrap
+KUBECONFIG = $(shell pwd)/metal/kubeconfig.yaml
+KUBE_CONFIG_PATH = $(KUBECONFIG)
 
-all: default external
+default: metal bootstrap wait
 
-.PHONY: metal
+all: metal bootstrap external wait
+
+configure:
+	./scripts/configure
+	git status
+
 metal:
 	make -C metal
 
-.PHONY: bootstrap
 bootstrap:
 	make -C bootstrap
 
-.PHONY: external
 external:
 	make -C external
 
-.PHONY: tools
+wait:
+	./scripts/wait-main-apps
+
 tools:
 	make -C tools
 
-.PHONY: docs
 docs:
 	make -C docs
 
