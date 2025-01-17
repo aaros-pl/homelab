@@ -5,7 +5,7 @@
 KUBECONFIG = $(shell pwd)/metal/kubeconfig.yaml
 KUBE_CONFIG_PATH = $(KUBECONFIG)
 
-default: metal bootstrap external smoke-test post-install clean
+default: metal system external smoke-test post-install clean
 
 configure:
 	./scripts/configure
@@ -14,8 +14,8 @@ configure:
 metal:
 	make -C metal
 
-bootstrap:
-	make -C bootstrap
+system:
+	make -C system
 
 external:
 	make -C external
@@ -26,21 +26,14 @@ smoke-test:
 post-install:
 	@./scripts/hacks
 
-tools:
-	@docker run \
-		--rm \
-		--interactive \
-		--tty \
-		--network host \
-		--env "KUBECONFIG=${KUBECONFIG}" \
-		--volume "/var/run/docker.sock:/var/run/docker.sock" \
-		--volume $(shell pwd):$(shell pwd) \
-		--volume ${HOME}/.ssh:/root/.ssh \
-		--volume ${HOME}/.terraform.d:/root/.terraform.d \
-		--volume homelab-tools-cache:/root/.cache \
-		--volume homelab-tools-nix:/nix \
-		--workdir $(shell pwd) \
-		nixos/nix nix-shell
+# TODO maybe there's a better way to manage backup with GitOps?
+backup:
+	./scripts/backup --action setup --namespace=actualbudget --pvc=actualbudget-data
+	./scripts/backup --action setup --namespace=jellyfin --pvc=jellyfin-data
+
+restore:
+	./scripts/backup --action restore --namespace=actualbudget --pvc=actualbudget-data
+	./scripts/backup --action restore --namespace=jellyfin --pvc=jellyfin-data
 
 test:
 	make -C test
@@ -48,18 +41,8 @@ test:
 clean:
 	docker compose --project-directory ./metal/roles/pxe_server/files down
 
-dev:
-	make -C metal cluster env=dev
-	make -C bootstrap
-
 docs:
-	docker run \
-		--rm \
-		--interactive \
-		--tty \
-		--publish 8000:8000 \
-		--volume $(shell pwd):/docs \
-		squidfunk/mkdocs-material
+	mkdocs serve
 
 git-hooks:
 	pre-commit install

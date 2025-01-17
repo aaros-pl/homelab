@@ -3,20 +3,21 @@
 default: apply
 
 ~/.terraform.d/credentials.tfrc.json:
-	terraform login
+	tofu login
 
 terraform.tfvars:
-	ansible-playbook tfvars.yml
+	cp terraform.tfvars.example ${@}
+	nvim ${@}
 
 .terraform.lock.hcl: ~/.terraform.d/credentials.tfrc.json versions.tf terraform.tfvars
-	terraform init
-	touch .terraform.lock.hcl
+	tofu init
+	touch ${@}
 
 namespaces:
 	ansible-playbook namespaces.yml
 
 plan: .terraform.lock.hcl
-	terraform plan
+	tofu plan
 
 apply: .terraform.lock.hcl namespaces
-	terraform apply -auto-approve
+	tofu apply -auto-approve
